@@ -5,7 +5,7 @@ let _db;
 
 const mongoConnect = callback => {
   MongoClient.connect(
-    'Here is your connection string from altas cluster'
+    'mongodb+srv://Bogomil:H1qT7N7URAp9NPhw@atlascluster.9za4ktm.mongodb.net/shop?retryWrites=true&w=majority'
   )
     .then(client => {
       console.log('Connected!');
