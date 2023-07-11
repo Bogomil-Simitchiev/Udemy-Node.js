@@ -67,7 +67,8 @@ exports.postEditProduct = (req, res, next) => {
     updatedPrice,
     updatedDesc,
     updatedImageUrl,
-    prodId
+    prodId,
+    req.user._id
   );
   product
     .save()
