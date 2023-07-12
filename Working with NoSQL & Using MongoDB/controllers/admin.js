@@ -95,6 +95,12 @@ exports.postDeleteProduct = (req, res, next) => {
   const prodId = req.body.productId;
   Product.deleteById(prodId)
     .then(() => {
+      req.user
+        .deleteItemFromCart(prodId)
+        .then(result => {
+          console.log('Removed from cart');
+        })
+        .catch(err => console.log(err));
       console.log('DESTROYED PRODUCT');
       res.redirect('/admin/products');
     })

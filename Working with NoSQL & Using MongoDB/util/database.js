@@ -5,7 +5,7 @@ let _db;
 
 const mongoConnect = callback => {
   MongoClient.connect(
-    'Here is your connection string from altas cluster'
+    'Here is your connection string from atlas cluster'
   )
     .then(client => {
       console.log('Connected!');
