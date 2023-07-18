@@ -10,7 +10,7 @@ const errorController = require('./controllers/error');
 const User = require('./models/user');
 
 const MONGODB_URI =
-  'mongodb+srv://Bogomil:H1qT7N7URAp9NPhw@atlascluster.9za4ktm.mongodb.net/shop?retryWrites=true&w=majority';
+  'Here is your connection string from MongoDB atlas';
 
 const app = express();
 const store = new MongoDBStore({
