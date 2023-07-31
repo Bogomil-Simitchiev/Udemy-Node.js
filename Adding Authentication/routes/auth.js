@@ -1,12 +1,10 @@
 const express = require('express');
 
-const authController = require('../controllers/auth');
-
 const router = express.Router();
 
+const authController = require('../controllers/auth');
 const isGuest = require('../middleware/is-guest');
 const isAuth = require('../middleware/is-auth');
-
 
 router.get('/login', isGuest, authController.getLogin);
 
