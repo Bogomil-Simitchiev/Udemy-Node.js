@@ -2,13 +2,16 @@ const express = require('express');
 const { check, body } = require('express-validator/check');
 
 const authController = require('../controllers/auth');
+const isGuest = require('../middleware/is-guest');
+const isAuth = require('../middleware/is-auth');
+
 const User = require('../models/user');
 
 const router = express.Router();
 
-router.get('/login', authController.getLogin);
+router.get('/login', isGuest, authController.getLogin);
 
-router.get('/signup', authController.getSignup);
+router.get('/signup', isGuest, authController.getSignup);
 
 router.post(
   '/login',
@@ -22,6 +25,7 @@ router.post(
       .isAlphanumeric()
       .trim()
   ],
+  isGuest,
   authController.postLogin
 );
 
@@ -61,17 +65,18 @@ router.post(
         return true;
       })
   ],
+  isGuest,
   authController.postSignup
 );
 
-router.post('/logout', authController.postLogout);
+router.post('/logout', isAuth, authController.postLogout);
 
-router.get('/reset', authController.getReset);
+router.get('/reset', isGuest, authController.getReset);
 
-router.post('/reset', authController.postReset);
+router.post('/reset', isGuest, authController.postReset);
 
-router.get('/reset/:token', authController.getNewPassword);
+router.get('/reset/:token', isGuest, authController.getNewPassword);
 
-router.post('/new-password', authController.postNewPassword);
+router.post('/new-password', isGuest, authController.postNewPassword);
 
 module.exports = router;
