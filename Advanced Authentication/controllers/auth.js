@@ -216,6 +216,12 @@ exports.postNewPassword = (req, res, next) => {
       return resetUser.save();
     })
     .then(result => {
+      transporter.sendMail({
+        to: resetUser.email,
+        from: 'here is email or website which you want',
+        subject: 'Successfull password reset!',
+        html: '<h1>You successfully reset your password!</h1>'
+      });
       res.redirect('/login');
     })
     .catch(err => {
